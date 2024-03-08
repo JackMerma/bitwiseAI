@@ -50,5 +50,5 @@ class XORDataset(Dataset):
 
         # data & label
         self.data = data
-        slef.label = label
+        self.label = label
 
