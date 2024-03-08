@@ -52,3 +52,29 @@ class XORDataset(Dataset):
         self.data = data
         self.label = label
 
+
+def train_model(model, optimizer, data_loader, loss_module, num_epochs=100):
+    model.train()
+
+    for epoch in tqdm(range(num_epochs)):
+        for data_inputs, data_labels in data_loader:
+
+            # step 1: mode input data to device (just if we use GPU)
+            # data_inputs = data_inputs.to(device)
+            # data_labels = data_labels.to(device)
+
+            # step 2: run the model on the input data
+            preds = model(data_inputs)
+            preds = preds.squeeze(dim=1)
+
+            # step 3: calculate the loss
+            loss = loss_module(preds, data_labels.float())
+
+            # step 4: preform backpropagation
+            optimizer.zero_grad()
+            loss.backward()
+
+            # step 5: update parameters
+            optimizer.step()
+
+    print("done")
