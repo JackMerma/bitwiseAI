@@ -113,10 +113,10 @@ class NOTDataset(Dataset):
         self.label = label
 
 
-def train_model(model, optimizer, data_loader, loss_module, num_epochs=100):
+def train_model(model, optimizer, data_loader, loss_module, num_epochs=100, name_model="Operation"):
     model.train()
 
-    for epoch in tqdm(range(num_epochs)):
+    for epoch in tqdm(range(num_epochs), desc=f"{name_model} model"):
         for data_inputs, data_labels in data_loader:
 
             # step 1: mode input data to device (just if we use GPU)
