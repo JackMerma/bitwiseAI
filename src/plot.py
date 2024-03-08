@@ -13,4 +13,4 @@ def visualize_samples(data, label, file_name="fig.png"):
     plt.ylabel(r"$x_2$")
     plt.xlabel(r"$x_1$")
     plt.legend()
-    plt.savefig(f"plot/{file_name}")
+    plt.savefig(f"plots/{file_name}")
