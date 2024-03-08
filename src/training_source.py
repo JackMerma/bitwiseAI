@@ -53,6 +53,66 @@ class XORDataset(Dataset):
         self.label = label
 
 
+class ANDDataset(Dataset):
+
+    def __init__(self, size, std=0.1):
+        super().__init__(size, std)
+        self.generate_continuous_and()
+
+    def generate_continuous_and(self):
+        data = torch.randint(low=0, high=2, size=(self.size, 2), dtype=torch.float32)
+
+        # calculate AND output using sum
+        label = (data.sum(dim=1) == 2).to(torch.long)
+        
+        # gaussian noise
+        data += self.std * torch.randn(data.shape)
+
+        # data & label
+        self.data = data
+        self.label = label
+
+
+class ORDataset(Dataset):
+
+    def __init__(self, size, std=0.1):
+        super().__init__(size, std)
+        self.generate_continuous_or()
+
+    def generate_continuous_or(self):
+        data = torch.randint(low=0, high=2, size=(self.size, 2), dtype=torch.float32)
+
+        # calculate OR output using sum
+        label = (data.sum(dim=1) > 0).to(torch.long)
+        
+        # gaussian noise
+        data += self.std * torch.randn(data.shape)
+
+        # data & label
+        self.data = data
+        self.label = label
+
+
+class NOTDataset(Dataset):
+
+    def __init__(self, size, std=0.1):
+        super().__init__(size, std)
+        self.generate_continuous_not()
+
+    def generate_continuous_not(self):
+        data = torch.randint(low=0, high=2, size=(self.size, 1), dtype=torch.float32)
+
+        # calculate OR output using sum
+        label = (((data.sum(dim=1)) + 1) % 2).to(torch.long)
+        
+        # gaussian noise
+        data += self.std * torch.randn(data.shape)
+
+        # data & label
+        self.data = data
+        self.label = label
+
+
 def train_model(model, optimizer, data_loader, loss_module, num_epochs=100):
     model.train()
 
