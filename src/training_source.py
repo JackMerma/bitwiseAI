@@ -17,3 +17,18 @@ class SimpleClassifier(nn.Module):
         x = self.act_fn(x)
         x = self.linear2(x)
         return x
+
+
+class Dataset(data.Dataset):
+
+    def __init__(self, size, std=0.1):
+        super().__init__()
+        self.size = size
+        self.std = std
+
+    def __len__(self):
+        return self.size
+
+    def __getitem__(self, idx):
+        return self.data[idx], self.label[idx]
+
