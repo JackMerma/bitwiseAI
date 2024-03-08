@@ -77,4 +77,19 @@ def train_model(model, optimizer, data_loader, loss_module, num_epochs=100):
             # step 5: update parameters
             optimizer.step()
 
-    print("done")
+def eval_model(model, data_loader, name_model):
+    model.eval()
+    true_preds, num_preds = 0., 0.
+
+    with torch.no_grad():
+        for data_inputs, data_labels in data_loader:
+            preds = model(data_inputs)
+            preds = preds.squeeze(dim=1)
+            preds = torch.sigmoid(preds)
+            preds_labels = (preds >= 0.5).long()
+
+            true_preds += (preds_labels == data_labels).sum()
+            num_preds += data_labels.shape[0]
+    
+    acc = true_preds / num_preds
+    print(f"Accuracy of the {name_model} model: {100.0*acc:4.2f}%")
