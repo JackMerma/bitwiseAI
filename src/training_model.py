@@ -52,3 +52,9 @@ torch.save(xor_state_dict, "models/xor_model.tar")
 torch.save(and_state_dict, "models/and_model.tar")
 torch.save(or_state_dict, "models/or_model.tar")
 torch.save(not_state_dict, "models/not_model.tar")
+
+# visualizing classification
+#visualize_classification(xor_model, xor_dataset.data, xor_dataset.label, file_name="xor_classification")
+#visualize_classification(and_model, and_dataset.data, and_dataset.label, file_name="and_classification")
+#visualize_classification(or_model, or_dataset.data, or_dataset.label, file_name="or_classification")
+#visualize_classification(not_model, not_dataset.data, not_dataset.label, file_name="not_classification")
