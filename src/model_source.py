@@ -27,3 +27,9 @@ def OR(input1, input2):
 def NOT(input1):
     data = torch.tensor([input1], dtype=torch.float32)
     return evaluate_operation(not_model, data)
+
+def IMP(input1, input2):
+    return OR(NOT(input1), input2)
+
+def BIC(input1, input2):
+    return XOR(IMP(a, b), IMP(b, a))
