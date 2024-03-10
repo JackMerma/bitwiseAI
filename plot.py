@@ -2,8 +2,9 @@ import torch
 import matplotlib.pyplot as plt
 from matplotlib.colors import to_rgba
 
-def visualize_samples(data, label, file_name="fig.png"):
+def visualize_samples(data, label, title="Dataset", file_name="fig.png"):
 
+    plt.clf()
     r, c = data.shape
 
     if c == 1:
@@ -15,15 +16,19 @@ def visualize_samples(data, label, file_name="fig.png"):
     #plotting
     plt.scatter(data0[:, 0], data0[:, 1], edgecolor="#333", label="class 0")
     plt.scatter(data1[:, 0], data1[:, 1], edgecolor="#333", label="class 1")
-    plt.title("Dataset")
-    plt.ylabel(r"$x_2$")
+    plt.title(title)
+
+    if c > 1:
+        plt.ylabel(r"$x_2$")
+
     plt.xlabel(r"$x_1$")
     plt.legend()
     plt.savefig(f"plots/{file_name}")
 
 @torch.no_grad()
-def visualize_classification(model, data, label, file_name="fig.png"):
+def visualize_classification(model, data, label, title="Dataset", file_name="fig.png"):
     
+    plt.clf()
     r, c = data.shape
 
     if c == 1:
@@ -34,9 +39,16 @@ def visualize_classification(model, data, label, file_name="fig.png"):
 
     plt.scatter(data0[:, 0], data0[:, 1], edgecolor="#333", label="class 0")
     plt.scatter(data1[:, 0], data1[:, 1], edgecolor="#333", label="class 1")
-    plt.title("Dataset")
-    plt.ylabel(r"$x_2$")
-    plt.xlabel(r"$x_1$")
+    plt.title(title)
+
+    if c > 1:
+        plt.ylabel(r"$x_2$")
+
+    if c > 1:
+        plt.xlabel(r"$x_1$")
+    else:
+        plt.xlabel("x")
+
     plt.legend()
 
     c0 = torch.Tensor(to_rgba("C0"))
@@ -49,7 +61,6 @@ def visualize_classification(model, data, label, file_name="fig.png"):
     if c == 1:
         model_inputs = torch.stack([xx2], dim=-1)
 
-    print("model_inputs: ", model_inputs)
     preds = model(model_inputs)
     preds = torch.sigmoid(preds)
     output_image = (1 - preds) * c0[None, None] + preds * c1[None, None]
