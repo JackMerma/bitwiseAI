@@ -95,3 +95,38 @@ def BIC(input1, input2):
 ```
 
 Finally, in the **main.py** file, you can experiment using all of these functions, and this file also shows examples. Keep in mind that you **are not** restricted to using just the 0 or the value, but they are decimally close to these; for example, instead of 0, you can use -0.0001, or instead of 1, you can use 0.92.
+
+## How to use?
+
+### Installation
+
+To use this project, follow these steps for installation:
+
+1. Create a virtual environment (using virtualenv or another option).
+2. Install the required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+### Training Models
+
+If you want to train the models with different parameters (such as epochs, batches, etc.), run the following command:
+
+```bash
+python training_model.py
+```
+
+Additionally, if you want to plot the output images (dataset and the classification data), uncomment the relevant lines in the **training_model.py** file.
+
+### Model Validation
+
+To validate the trained models, use the following command:
+
+```bash
+python evaluating_model.py
+```
+
+### Model Usage
+
+Finally, you can use the functions defined in `model_source.py` by running the **main.py** file. This allows you to use functions such as XOR, AND, OR, NOT, IMP, and BIC.
