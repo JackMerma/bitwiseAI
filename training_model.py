@@ -16,10 +16,10 @@ or_dataset = ORDataset(size=2500)
 not_dataset = NOTDataset(size=2500)
 
 # plotting
-#visualize_samples(xor_dataset.data, xor_dataset.label, file_name="xor_dataset.png")
-#visualize_samples(and_dataset.data, and_dataset.label, file_name="and_dataset.png")
-#visualize_samples(or_dataset.data, or_dataset.label, file_name="or_dataset.png")
-#visualize_samples(not_dataset.data, not_dataset.label, file_name="not_dataset.png")
+visualize_samples(xor_dataset.data, xor_dataset.label, title="XOR Dataset", file_name="xor_dataset.png")
+visualize_samples(and_dataset.data, and_dataset.label, title="AND Dataset", file_name="and_dataset.png")
+visualize_samples(or_dataset.data, or_dataset.label, title="OR Dataset", file_name="or_dataset.png")
+visualize_samples(not_dataset.data, not_dataset.label, title="NOT Dataset", file_name="not_dataset.png")
 
 # data loader
 xor_data_loader = data.DataLoader(xor_dataset, batch_size=150, shuffle=True)
@@ -54,7 +54,7 @@ torch.save(or_state_dict, "models/or_model.tar")
 torch.save(not_state_dict, "models/not_model.tar")
 
 # visualizing classification
-#visualize_classification(xor_model, xor_dataset.data, xor_dataset.label, file_name="xor_classification")
-#visualize_classification(and_model, and_dataset.data, and_dataset.label, file_name="and_classification")
-#visualize_classification(or_model, or_dataset.data, or_dataset.label, file_name="or_classification")
-#visualize_classification(not_model, not_dataset.data, not_dataset.label, file_name="not_classification")
+visualize_classification(xor_model, xor_dataset.data, xor_dataset.label, title="XOR Data classification", file_name="xor_classification")
+visualize_classification(and_model, and_dataset.data, and_dataset.label, title="AND Data classification", file_name="and_classification")
+visualize_classification(or_model, or_dataset.data, or_dataset.label, title="OR Data classification", file_name="or_classification")
+visualize_classification(not_model, not_dataset.data, not_dataset.label, title="NOT Data classification", file_name="not_classification")
