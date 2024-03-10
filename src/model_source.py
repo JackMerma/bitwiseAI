@@ -32,4 +32,4 @@ def IMP(input1, input2):
     return OR(NOT(input1), input2)
 
 def BIC(input1, input2):
-    return XOR(IMP(a, b), IMP(b, a))
+    return XOR(IMP(input1, input2), IMP(input2, input1))
