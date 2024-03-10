@@ -119,7 +119,7 @@ def train_model(model, optimizer, data_loader, loss_module, num_epochs=100, name
     for epoch in tqdm(range(num_epochs), desc=f"{name_model} model"):
         for data_inputs, data_labels in data_loader:
 
-            # step 1: mode input data to device (just if we use GPU)
+            # step 1: move input data to device (just if we use GPU)
             # data_inputs = data_inputs.to(device)
             # data_labels = data_labels.to(device)
 
@@ -130,7 +130,7 @@ def train_model(model, optimizer, data_loader, loss_module, num_epochs=100, name
             # step 3: calculate the loss
             loss = loss_module(preds, data_labels.float())
 
-            # step 4: preform backpropagation
+            # step 4: perform backpropagation
             optimizer.zero_grad()
             loss.backward()
 
