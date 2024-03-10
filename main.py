@@ -13,7 +13,6 @@ for operator in OPERATORS:
     for (a, b) in DATA:
         result = 0 if operator(a, b) < 0.5 else 1
         print(f"{operator.__name__}({a}, {b}) \t= {result}")
-        #print(f"(symbols){XOR({a}, {b}) = {a ^ b}")
 
 print("\nadvanced function-----")
 
